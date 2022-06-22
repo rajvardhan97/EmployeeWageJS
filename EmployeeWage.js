@@ -17,8 +17,11 @@ const FullTimeHours = 8;
 const WageperHour = 20;
 let Emphours = 0;
 let CheckEmp = Math.floor(Math.random() * 10) % 3;
+CalculateDailyWage(CheckEmp);
 
-switch(CheckEmp)
+function CalculateDailyWage(CheckEmp)
+{
+    switch(CheckEmp)
 {
     case PartTime:
         Emphours = PartTimeHours;
@@ -28,6 +31,10 @@ switch(CheckEmp)
         break;
     default:
         Emphours = 0;
+        break;
 }
 let EmpWage = Emphours * WageperHour;
 console.log("Employee Wage is: " + EmpWage);
+return EmpWage;
+}
+
