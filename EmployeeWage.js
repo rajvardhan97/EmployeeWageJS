@@ -38,3 +38,12 @@ console.log("Employee Wage is: " + EmpWage);
 return EmpWage;
 }
 
+const Working_Days=20;
+let totalEmpWage=0;
+for(let i=1; i<=Working_Days; i++)
+{
+    var empCheck=Math.floor(Math.random()*10) % 3;
+    empWage=CalculateDailyWage(empCheck);
+    totalEmpWage+=empWage;
+}
+console.log("Total Employee Wage = " + totalEmpWage);
