@@ -61,3 +61,15 @@ while(totalEmpHrs<=Max_Hrs_In_Month && totalWorkingDays<Working_Days)
     totalWage+=tempwage;
 }
 console.log("Total Employee Wage : "+totalWage + " in " + totalWorkingDays + " days and " + totalEmpHrs + " hours");
+
+
+let EmpDailyWageArray = new Array();
+for(let i=1; i<= Working_Days; i++)
+{
+    var empCheck=Math.floor(Math.random()*10) % 3;
+    empWage=CalculateDailyWage(empCheck);
+    EmpDailyWageArray.push(empWage);
+}
+EmpDailyWageArray.forEach(element => {
+    console.log("Wage is: " + element);
+});
