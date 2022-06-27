@@ -134,5 +134,64 @@ function totalDaysWorked(EmpWage){
 console.log("Number of days employee worked : "+EmpDailyWageArray.reduce(totalDaysWorked));
 
 // UC 8: Store the Day and the Daily Wage
-console.log("Day and Daily Wage: ");
-console.log(mapDayWithWageArray + "\n Total Wage: " + totEmpWage);
+var empDailyHrmap = new Map();
+let empDailyWageMap = new Map();
+var employees=new Array();
+{
+    let totalEmpHrs=0;
+    let totalWorkingDays=0;
+    let totalWage=0;
+    employees.push(0);
+    employees.push(4);
+    employees.push(8);
+    while(totalEmpHrs<=Max_Hrs_In_Month && totalWorkingDays< Working_Days)
+    {
+        totalWorkingDays++;
+        var empCheck=Math.floor(Math.random()*10) % 3;
+        let tempwage=CalculateDailyWage(empCheck);
+        totalWage+=tempwage;
+        totalEmpHrs+=employees[empCheck];
+        empDailyWageMap.set(totalWorkingDays,tempwage);
+        empDailyHrmap.set(totalWorkingDays,employees[empCheck]);
+    }
+    console.log("Total Days : "+ totalWorkingDays + " Total Hours : "+totalEmpHrs + " Total Emp Wage : "+totalWage);
+    console.log(empDailyWageMap);
+
+  function totalWages(totalWage,dailyWage){
+    return totalWage+dailyWage;
+  }
+  console.log("Emp Wage Map total Wage: "+
+  Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+}
+
+//UC 9: Arrow Functions
+var findTotal = (totalVal,DailyVal)=>
+{
+    return totalVal+DailyVal;
+}
+  let totalHrs = Array.from(empDailyHrmap.values()).reduce(findTotal,0);
+  let totalSalary = Array.from(empDailyWageMap.values()).filter(dailyWage=>dailyWage>0).reduce(findTotal,0);
+
+  //9a)Use arrow function to find emp total hrs and wage
+  console.log("Employee Total hours: "+totalHrs+"\nEmployee Total Wage: "+totalSalary);
+
+  //9b)Show fulltime, part time and absent days
+  console.log("Show fulltime,part time and absent days");
+  let absent = new Array();
+  let partTimeWorking = new Array();
+  let fullTimeWorking = new Array();
+
+  empDailyHrmap.forEach((value,key,map) =>{
+    if( value == 8)
+    fullTimeWorking.push(key);
+    else if(value == 4)
+    partTimeWorking.push(key);
+    else
+    absent.push(key);
+  })
+  console.log("Absent days: "+absent);
+  console.log("Fulltime work days: "+fullTimeWorking);
+  console.log("Parttime work days: "+partTimeWorking);
+
+
+
