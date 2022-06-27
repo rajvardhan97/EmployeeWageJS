@@ -193,5 +193,28 @@ var findTotal = (totalVal,DailyVal)=>
   console.log("Fulltime work days: "+fullTimeWorking);
   console.log("Parttime work days: "+partTimeWorking);
 
+//UC10: Storing Days Hrs and Wages in object
+let employeeDayandHr =new Array();
+{
+  let totalEmpHrs=0;
+  let totalWorkingDays=0;
+  let totalWage=0;
 
-
+  while(totalEmpHrs<=Max_Hrs_In_Month && totalWorkingDays< Working_Days)
+  {
+      totalWorkingDays++;
+      var empCheck=Math.floor(Math.random()*10) % 3;
+      let tempwage=CalculateDailyWage(empCheck);
+      totalWage+=tempwage;
+      totalEmpHrs+=employees[empCheck];
+      employeeDayandHr.push({
+          day:totalWorkingDays,
+          dailyHour:employees[empCheck],
+          dailyWage:tempwage,
+          toString(){
+              return '\nDay:'+this.day+"\tHours"+this.dailyHour+"\tWages: "+this.dailyWage
+          },
+      });
+  }
+  console.log("Data stored in the Array of object:"+employeeDayandHr);
+}
