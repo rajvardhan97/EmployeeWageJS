@@ -217,4 +217,27 @@ let employeeDayandHr =new Array();
       });
   }
   console.log("Data stored in the Array of object:"+employeeDayandHr);
+
+
+// UC11: Perform following Object operations using Arrow Functions
+
+    // 11a: Calculate total Wage and total hours worked
+
+    totalWage = employeeDayandHr.filter(dailyHourWage => dailyHourWage.dailyWage > 0).reduce( (totalWages, dailyHourWage) => totalWages += dailyHourWage.dailyWage, 0);
+    totalWorkingHours = employeeDayandHr.filter(dailyHourWage => dailyHourWage.dailyHour > 0).reduce((totalHrs, dailyHourWage) => totalHrs += dailyHourWage.dailyHour, 0);
+    console.log("Total Wage: " + totalWage);
+    console.log("Total working hours:" + totalWorkingHours);
+
+    // 11b: Show the full workings days using foreach
+
+    console.log("Show the full workings days using foreach");
+    employeeDayandHr.filter(dailyHourWage => dailyHourWage.dailyHour == 8).forEach(dailyHour => console.log(dailyHour.toString()));
+
+    // 11c: Show Part working days using Map by reducing to String Array
+    let partTimeEmployee= employeeDayandHr.filter(pEmployeeArr=>pEmployeeArr.dailyHour==4).map(pEmployeeArr=>pEmployeeArr.toString());
+    console.log("Part time employee using string array:"+partTimeEmployee);
+
+    // 11d: No working days only using Map function
+    let noWorkingday= employeeDayandHr.filter(pEmployeeArr=>pEmployeeArr.dailyHour==0).map(pEmployeeArr=>pEmployeeArr.day);
+    console.log("No working days:",noWorkingday.join(","));
 }
